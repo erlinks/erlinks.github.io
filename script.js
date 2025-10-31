@@ -38,7 +38,7 @@ const config = {
     // TITRE ET FAVICON
     page: {
         title: "Erlinks",  // Titre de la page (onglet du navigateur)
-        favicon: "images/logo.png"  // Chemin vers votre favicon (icône de l'onglet)
+        favicon: "favicon.ico"  // Chemin vers votre favicon (icône de l'onglet)
     },
     
     // PROFILE
@@ -189,23 +189,33 @@ function applyConfig() {
     
     // Favicon
     if (config.page.favicon) {
-        // Supprimer l'ancien favicon s'il existe
-        let favicon = document.querySelector("link[rel='icon']");
-        if (!favicon) {
-            favicon = document.createElement('link');
-            favicon.rel = 'icon';
-            document.head.appendChild(favicon);
-        }
-        favicon.href = config.page.favicon;
+        // Supprimer tous les anciens favicons
+        const existingFavicons = document.querySelectorAll("link[rel*='icon'], link[rel*='shortcut'], link[rel='apple-touch-icon']");
+        existingFavicons.forEach(link => link.remove());
         
-        // Ajouter aussi pour Apple touch icon et autres
-        let appleIcon = document.querySelector("link[rel='apple-touch-icon']");
-        if (!appleIcon) {
-            appleIcon = document.createElement('link');
-            appleIcon.rel = 'apple-touch-icon';
-            document.head.appendChild(appleIcon);
-        }
-        appleIcon.href = config.page.favicon;
+        // Créer le nouveau favicon avec un timestamp pour contourner le cache
+        const timestamp = new Date().getTime();
+        const faviconUrl = config.page.favicon + (config.page.favicon.includes('?') ? '&' : '?') + 't=' + timestamp;
+        
+        // Favicon principal
+        const favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        favicon.type = config.page.favicon.endsWith('.ico') ? 'image/x-icon' : 'image/png';
+        favicon.href = faviconUrl;
+        document.head.appendChild(favicon);
+        
+        // Shortcut icon pour compatibilité anciens navigateurs
+        const shortcutIcon = document.createElement('link');
+        shortcutIcon.rel = 'shortcut icon';
+        shortcutIcon.type = config.page.favicon.endsWith('.ico') ? 'image/x-icon' : 'image/png';
+        shortcutIcon.href = faviconUrl;
+        document.head.appendChild(shortcutIcon);
+        
+        // Apple touch icon
+        const appleIcon = document.createElement('link');
+        appleIcon.rel = 'apple-touch-icon';
+        appleIcon.href = faviconUrl;
+        document.head.appendChild(appleIcon);
     }
     
     // Profile
