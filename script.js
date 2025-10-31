@@ -37,7 +37,7 @@ function getLogo(platform, color = 'white') {
 const config = {
     // TITRE ET FAVICON
     page: {
-        title: "Erlow - Links",  // Titre de la page (onglet du navigateur)
+        title: "Erlinks",  // Titre de la page (onglet du navigateur)
         favicon: "images/logo.png"  // Chemin vers votre favicon (icône de l'onglet)
     },
     
