@@ -5,13 +5,15 @@ Un linktree moderne et ultra-personnalisable avec vos liens sociaux.
 ## 🚀 Fonctionnalités
 
 - ✅ Design moderne et responsive
-- ✅ Animations fluides
-- ✅ Support pour 6 plateformes : Site Web, TikTok, X (Twitter), Discord, YouTube, Twitch
+- ✅ Animations fluides en cascade
+- ✅ Support pour **8 plateformes** : Site Web, TikTok, X (Twitter), Discord, YouTube, Twitch, Instagram, Email
+- ✅ **Logos SVG officiels** en blanc (personnalisables) pour toutes les plateformes
 - ✅ **Personnalisation complète** : texte, images, couleurs, fonds
 - ✅ **Images de fond** pour chaque carte de lien
 - ✅ **Cartes personnalisables** avec hauteurs ajustables
 - ✅ **Background de la carte principale** : solid, gradient, image, glassmorphism
 - ✅ **Styles de boutons** : solid, glassmorphism, outline, minimal, gradient
+- ✅ **Titre et favicon** personnalisables
 
 ## 📝 Configuration Complète
 
@@ -147,6 +149,20 @@ buttonStyle: {
 **💡 Personnalisation des textes :**
 Les textes des liens peuvent être modifiés individuellement dans la section `links` de chaque lien (voir section "Configuration des liens").
 
+### 🎨 Logos des applications
+
+Activez les logos SVG officiels en blanc pour remplacer les emojis :
+
+```javascript
+icons: {
+    useLogos: true,     // true pour utiliser les vrais logos SVG, false pour utiliser les emojis
+    logoColor: "#fff"   // Couleur des logos SVG (par défaut: blanc)
+}
+```
+
+**Plateformes avec logos disponibles :**
+- Website, TikTok, X (Twitter), Discord, YouTube, Twitch, Instagram, Email
+
 ### 🔗 Configuration des liens
 
 Chaque lien est entièrement personnalisable :
@@ -166,7 +182,25 @@ links: {
         tall: true,                           // true pour hauteur standard élevée
         customHeight: "200px"                 // Ou hauteur personnalisée exacte
     },
-    // ... même structure pour tiktok, x, discord, youtube, twitch
+    instagram: {
+        url: "https://www.instagram.com/votre-compte",
+        text: "Instagram",
+        icon: "📷",
+        enabled: true,
+        backgroundImage: "",
+        tall: false,
+        customHeight: ""
+    },
+    mail: {
+        url: "mailto:votre-email@example.com",  // Utilisez mailto: pour les emails
+        text: "Email",
+        icon: "📧",
+        enabled: true,
+        backgroundImage: "",
+        tall: false,
+        customHeight: ""
+    }
+    // ... même structure pour les autres plateformes (tiktok, x, discord, youtube, twitch)
 }
 ```
 
@@ -210,6 +244,34 @@ discord: {
     enabled: false,  // Le lien ne sera pas affiché
     backgroundImage: "",
     tall: false,
+    customHeight: ""
+}
+```
+
+#### Exemple : Lien Email (mailto)
+
+```javascript
+mail: {
+    url: "mailto:contact@example.com",  // Utilisez mailto: pour ouvrir le client de messagerie
+    text: "Me contacter",
+    icon: "📧",
+    enabled: true,
+    backgroundImage: "",
+    tall: false,
+    customHeight: ""
+}
+```
+
+#### Exemple : Lien Instagram
+
+```javascript
+instagram: {
+    url: "https://www.instagram.com/votre-compte",
+    text: "Suivez-moi sur Instagram",
+    icon: "📷",
+    enabled: true,
+    backgroundImage: "images/instagram-bg.jpg",  // Optionnel : image de fond
+    tall: true,
     customHeight: ""
 }
 ```
@@ -318,12 +380,15 @@ linktree/
 
 **Changer les images :**
 - Modifiez `config.profile.picture` pour votre logo/avatar
+- Modifiez `config.page.favicon` pour le favicon de l'onglet
 - Modifiez `config.links.*.backgroundImage` pour les images de fond des liens
 
 **Changer les couleurs :**
 - Modifiez `config.colors.nameColor` pour la couleur du nom
 - Modifiez `config.colors.bioColor` pour la couleur de la bio
 - Modifiez `config.colors.avatarBorderColor` pour la couleur de la bordure de l'avatar
+- Modifiez `config.icons.logoColor` pour la couleur des logos SVG
+- Modifiez `config.buttonStyle.*` pour personnaliser les couleurs des boutons (voir section "Style des boutons")
 
 **Changer le fond :**
 - Modifiez `config.background.type` et les valeurs correspondantes
