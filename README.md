@@ -6,7 +6,7 @@ Un linktree moderne et ultra-personnalisable avec vos liens sociaux.
 
 - ✅ Design moderne et responsive
 - ✅ Animations fluides en cascade
-- ✅ Support pour **8 plateformes** : Site Web, TikTok, X (Twitter), Discord, YouTube, Twitch, Instagram, Email
+- ✅ Support pour **9 plateformes** : Site Web, TikTok, X (Twitter), Discord, YouTube, Twitch, Instagram, Email, SoundCloud
 - ✅ **Logos SVG officiels** en blanc (personnalisables) pour toutes les plateformes
 - ✅ **Personnalisation complète** : texte, images, couleurs, fonds
 - ✅ **Images de fond** pour chaque carte de lien
@@ -161,7 +161,7 @@ icons: {
 ```
 
 **Plateformes avec logos disponibles :**
-- Website, TikTok, X (Twitter), Discord, YouTube, Twitch, Instagram, Email
+- Website, TikTok, X (Twitter), Discord, YouTube, Twitch, Instagram, Email, SoundCloud
 
 ### 🔗 Configuration des liens
 
@@ -195,6 +195,15 @@ links: {
         url: "mailto:votre-email@example.com",  // Utilisez mailto: pour les emails
         text: "Email",
         icon: "📧",
+        enabled: true,
+        backgroundImage: "",
+        tall: false,
+        customHeight: ""
+    },
+    soundcloud: {
+        url: "https://soundcloud.com/votre-compte",
+        text: "SoundCloud",
+        icon: "🎵",
         enabled: true,
         backgroundImage: "",
         tall: false,
