@@ -42,6 +42,9 @@ const logos = {
         <path d="M-186.5,366.8c-1.4,0-2.5,1.1-2.6,2.6l-1.6,58.2l1.6,26.7c0,1.4,1.2,2.6,2.6,2.6s2.5-1.1,2.6-2.6l1.8-26.7l-1.8-58.2 C-184,367.9-185.1,366.8-186.5,366.8z" fill="currentColor"/>
         <path d="M-175.9,368.1c-1.5,0-2.8,1.2-2.8,2.8l-1.5,56.7l1.5,26.5c0,1.6,1.3,2.8,2.8,2.8s2.8-1.2,2.8-2.8l1.7-26.5l-1.7-56.7 C-173.1,369.3-174.3,368.1-175.9,368.1z" fill="currentColor"/>
         <path d="M-165.2,369.9c-1.7,0-3,1.3-3,3l-1.4,54.7l1.4,26.3c0,1.7,1.4,3,3,3c1.7,0,3-1.3,3-3l1.5-26.3l-1.5-54.7 C-162.2,371.3-163.5,369.9-165.2,369.9z" fill="currentColor"/>
+    </svg>`,
+    portfolio: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z" fill="currentColor"/>
     </svg>`
 };
 
@@ -215,6 +218,15 @@ const config = {
             backgroundImage: "",
             tall: false,
             customHeight: ""
+        },
+        portfolio: {
+            url: "https://www.ethan-ehrler.fr",
+            text: "Portfolio",
+            icon: "💼",
+            enabled: true,
+            backgroundImage: "",
+            tall: false,
+            customHeight: ""
         }
     },
     
@@ -334,6 +346,7 @@ function applyConfig() {
     // Liens
     const linkConfigs = {
         'website-link': config.links.website,
+        'portfolio-link': config.links.portfolio,
         'tiktok-link': config.links.tiktok,
         'x-link': config.links.x,
         'discord-link': config.links.discord,
@@ -370,6 +383,7 @@ function applyConfig() {
                     // Mapping des noms de liens vers les logos
                     const logoMap = {
                         'website-link': 'website',
+                        'portfolio-link': 'portfolio',
                         'tiktok-link': 'tiktok',
                         'x-link': 'x',
                         'discord-link': 'discord',
