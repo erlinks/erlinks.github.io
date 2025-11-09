@@ -511,14 +511,93 @@ function applyConfig() {
     }
 }
 
+// Préchargement des images critiques
+function preloadCriticalImages() {
+    const criticalImages = [];
+    
+    // Image de profil
+    if (config.profile.picture) {
+        criticalImages.push(config.profile.picture);
+    }
+    
+    // Background du body (si c'est une image)
+    if (config.background.type === "image" && config.background.image) {
+        criticalImages.push(config.background.image);
+    }
+    
+    // Background du container (si c'est une image)
+    if (config.container.type === "image" && config.container.image) {
+        criticalImages.push(config.container.image);
+    }
+    
+    // Précharger les images
+    criticalImages.forEach(src => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = src;
+        document.head.appendChild(link);
+    });
+}
+
 // Initialisation
 window.addEventListener('DOMContentLoaded', () => {
+    preloadCriticalImages();
     applyConfig();
     
-    // Animation au chargement
-    document.body.style.opacity = '0';
-    setTimeout(() => {
-        document.body.style.transition = 'opacity 0.5s ease';
-        document.body.style.opacity = '1';
-    }, 100);
+    // Animation au chargement - attendre que les images soient chargées
+    const criticalImages = document.querySelectorAll('img[loading="eager"], .container, body');
+    let imagesLoaded = 0;
+    const totalImages = document.querySelectorAll('img').length || 1;
+    
+    // Fonction pour afficher la page une fois prête
+    const showPage = () => {
+        const loader = document.getElementById('page-loader');
+        if (loader) {
+            loader.classList.add('hidden');
+            setTimeout(() => {
+                loader.remove();
+            }, 500);
+        }
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+            document.body.style.transition = 'opacity 0.5s ease';
+            document.body.style.opacity = '1';
+        }, 100);
+    };
+    
+    // Vérifier si toutes les images sont chargées
+    const images = document.querySelectorAll('img');
+    if (images.length === 0) {
+        showPage();
+    } else {
+        images.forEach(img => {
+            if (img.complete) {
+                imagesLoaded++;
+            } else {
+                img.addEventListener('load', () => {
+                    imagesLoaded++;
+                    if (imagesLoaded >= totalImages) {
+                        showPage();
+                    }
+                });
+                img.addEventListener('error', () => {
+                    imagesLoaded++;
+                    if (imagesLoaded >= totalImages) {
+                        showPage();
+                    }
+                });
+            }
+        });
+        
+        // Timeout de sécurité - afficher après 2 secondes max
+        setTimeout(() => {
+            showPage();
+        }, 2000);
+        
+        // Si toutes les images sont déjà en cache
+        if (imagesLoaded >= totalImages) {
+            showPage();
+        }
+    }
 });
