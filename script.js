@@ -70,15 +70,15 @@ const config = {
     profile: {
         name: "Erlow",
         bio: "Web Dev ✦ UI/UX ✦ Rocket League",
-        picture: "images/logo-variante.png"  // Chemin vers votre photo/logo
+        picture: "images/logo-new.jpg"  // Chemin vers votre photo/logo
     },
     
     // FOND DE LA PAGE (choisissez UN des deux)
     background: {
         type: "solid",  // "gradient", "solid", ou "image"
         gradient: "linear-gradient(135deg, #667eea 0%,rgb(63, 78, 219) 100%)",  // Si type = "gradient"
-        solidColor: "#11110b",  // Si type = "solid"
-        image: "images/bg.png",  // Si type = "image" : "images/background.jpg"
+        solidColor: "#101010",  // Si type = "solid"
+        image: "images/bg-silver.jpg",  // Si type = "image" : "images/background.jpg"
         imageSize: "cover"  // "cover", "contain", ou "auto"
     },
     
@@ -87,7 +87,7 @@ const config = {
         type: "image",  // "solid", "gradient", "image", ou "glassmorphism"
         solidColor: "rgba(255, 255, 255, 0.95)",  // Si type = "solid"
         gradient: "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.8) 100%)",  // Si type = "gradient"
-        image: "images/bg.png",  // Si type = "image" : "images/container-bg.jpg"
+        image: "images/bg-silver.png",  // Si type = "image" : "images/container-bg.jpg"
         imageSize: "cover",  // "cover", "contain", ou "auto"
         // Glassmorphism settings (si type = "glassmorphism")
         glassBlur: "20px",  // Intensité du flou
@@ -143,7 +143,7 @@ const config = {
             icon: "🌐",
             enabled: true,
             // Optionnel : image de fond pour cette carte
-            backgroundImage: "images/website-bg.png",  // Ex: "images/website-bg.jpg"
+            backgroundImage: "images/website-bg-new.png",  // Ex: "images/website-bg.jpg"
             tall: true,  // true pour une carte plus haute
             customHeight: ""  // Ex: "200px" (laisser vide pour hauteur par défaut)
         },
